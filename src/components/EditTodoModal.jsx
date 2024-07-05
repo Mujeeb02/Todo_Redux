@@ -5,16 +5,18 @@ import { editTodo } from '../store/actions/todoAction';
 
 const EditTodoModal = ({ isOpen, onRequestClose, todo }) => {
   const [newTitle, setNewTitle] = useState(todo.title);
+  const [newDescription, setNewDescription] = useState(todo.description);
   const dispatch = useDispatch();
 
   const handleSave = () => {
-    dispatch(editTodo(todo.id, newTitle));
+    dispatch(editTodo(todo.id, { title: newTitle, description: newDescription }));
     onRequestClose();
   };
 
   const handleCancel = () => {
     onRequestClose();
     setNewTitle(todo.title);
+    setNewDescription(todo.description);
   };
 
   return (
@@ -25,7 +27,13 @@ const EditTodoModal = ({ isOpen, onRequestClose, todo }) => {
           type="text"
           value={newTitle}
           onChange={(e) => setNewTitle(e.target.value)}
-          className="px-4 py-2 w-full border rounded-md shadow-sm focus:outline-none focus:border-blue-500 transition duration-300 ease-in-out"
+          className="px-4 py-2 w-full border rounded-md shadow-sm focus:outline-none focus:border-blue-500 transition duration-300 ease-in-out mb-2"
+        />
+        <input
+          type="text"
+          value={newDescription}
+          onChange={(e) => setNewDescription(e.target.value)}
+          className="px-4 py-2 w-full border rounded-md shadow-sm focus:outline-none focus:border-blue-500 transition duration-300 ease-in-out mb-2"
         />
         <div className="flex justify-end space-x-2 mt-4">
           <button onClick={handleSave} className="px-4 py-2 bg-green-500 text-white rounded-md shadow-sm hover:bg-green-600 focus:outline-none focus:bg-green-600 transition duration-300 ease-in-out">

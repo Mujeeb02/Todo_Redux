@@ -5,6 +5,8 @@ export const addTodo = (todo) => ({
   payload: {
     id: uuidv4(),
     title: todo.title,
+    description: todo.description,
+    date: todo.date,
     completed: false,
   },
 });
@@ -19,9 +21,9 @@ export const toggleTodo = (id) => ({
   payload: id,
 });
 
-export const editTodo = (id, title) => ({
+export const editTodo = (id, updates) => ({
   type: 'EDIT_TODO',
-  payload: { id, title },
+  payload: { id, updates },
 });
 
 export const loadTodos = (todos) => ({
