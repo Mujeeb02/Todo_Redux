@@ -1,8 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import TodoList from './TodoList';
+import { loadTodos } from '../store/actions/todoAction';
 
 const Home = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const savedTodos = JSON.parse(localStorage.getItem('todos'));
+    if (savedTodos) {
+      dispatch(loadTodos(savedTodos));
+    }
+  }, [dispatch]);
+
   return (
     <div>
       <div className="flex justify-between items-center mb-4">

@@ -23,3 +23,8 @@ export const editTodo = (id, title) => ({
   type: 'EDIT_TODO',
   payload: { id, title },
 });
+
+export const loadTodos = (todos) => ({
+  type: 'LOAD_TODOS',
+  payload: todos,
+});
